@@ -1,5 +1,5 @@
 Backend - Tecnologías
-Tecnologías que usaremos:
+
 1. Node.js + Express
 Para crear el servidor y manejar las rutas.
 
