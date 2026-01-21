@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prueba de Navegación por Teclado</title>
+    <style>
+        /* Estilos básicos para simular la interfaz */
+        body { font-family: sans-serif; max-width: 600px; margin: 2rem auto; padding: 0 1rem; }
+        
+        /* ESTILO CRÍTICO PARA ACCESIBILIDAD:
+           Esto hace visible dónde está el foco del teclado.
+           En Tailwind sería 'focus:ring' */
+        :focus {
+            outline: 3px solid #2563EB; /* Azul fuerte */
+            outline-offset: 2px;
+            border-radius: 4px;
+        }
+
+        .form-group { margin-bottom: 1rem; }
+        label { display: block; margin-bottom: 0.5rem; font-weight: bold; }
+        input, select, button { width: 100%; padding: 0.5rem; font-size: 1rem; }
+        button { background-color: #000; color: #fff; cursor: pointer; margin-top: 1rem;}
+        
+        /* Link de "Saltar al contenido" (Técnica pro de accesibilidad) */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: #000;
+            color: white;
+            padding: 8px;
+            z-index: 100;
+            transition: top 0.3s;
+        }
+        /* Solo aparece cuando recibe el foco del teclado */
+        .skip-link:focus {
+            top: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <a href="#contenido-principal" class="skip-link">Saltar al contenido principal</a>
+
+    <header>
+        <nav>
+            <h2>Menú de Navegación</h2>
+            <ul>
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#">Inventario</a></li>
+                <li><a href="#">Reportes</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="contenido-principal">
+        <h1>Alta de Producto</h1>
+        <p>Usa la tecla <strong>TAB</strong> para navegar y <strong>ENTER</strong> para accionar.</p>
+
+        <form action="#" onsubmit="alert('¡Formulario enviado con éxito!'); return false;">
+            
+            <div class="form-group">
+                <label for="nombre">Nombre del Producto:</label>
+                <input type="text" id="nombre" name="nombre" placeholder="Ej. Coca Cola 600ml" required>
+            </div>
+
+            <div class="form-group">
+                <label for="precio">Precio ($):</label>
+                <input type="number" id="precio" name="precio" placeholder="0.00">
+            </div>
+
+            <div class="form-group">
+                <label for="categoria">Categoría:</label>
+                <select id="categoria" name="categoria">
+                    <option value="bebidas">Bebidas</option>
+                    <option value="botanas">Botanas</option>
+                    <option value="limpieza">Limpieza</option>
+                </select>
+            </div>
+
+            <button type="submit">Guardar Producto</button>
+            <button type="button" onclick="alert('Cancelado')" style="background-color: #ccc; color: #000; margin-top: 0.5rem;">Cancelar</button>
+        </form>
+    </main>
+
+    <footer>
+        <p>© 2026 Tiendita App. <a href="#">Aviso de Privacidad</a></p>
+    </footer>
+
+</body>
+</html>
