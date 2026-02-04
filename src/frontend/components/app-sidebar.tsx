@@ -109,12 +109,12 @@ export function AppSidebar() {
       {/* Header del Sidebar */}
       <SidebarHeader className="border-b border-sidebar-border">
         <div className="flex items-center gap-2 px-2 py-1">
-          {/* <div 
+          <div 
             className="flex items-center justify-center w-8 h-8 rounded-lg bg-primary text-primary-foreground"
             aria-hidden="true"
           >
             <Package className="w-4 h-4" />
-          </div> */}
+          </div>
           <span className="font-semibold text-lg group-data-[collapsible=icon]:hidden">
             Inventario
           </span>
@@ -140,7 +140,7 @@ export function AppSidebar() {
                       aria-current={pathname === item.href ? 'page' : undefined}
                       aria-describedby={`nav-${item.title.toLowerCase()}-desc`}
                     >
-                      {/* <item.icon aria-hidden="true" /> */}
+                      <item.icon aria-hidden="true" />
                       <span>{item.title}</span>
                     </Link>
                   </SidebarMenuButton>
@@ -173,7 +173,7 @@ export function AppSidebar() {
                           aria-current={pathname === item.href ? 'page' : undefined}
                           aria-describedby={`nav-${item.title.toLowerCase()}-desc`}
                         >
-                          {/* <item.icon aria-hidden="true" /> */}
+                          <item.icon aria-hidden="true" />
                           <span>{item.title}</span>
                         </Link>
                       </SidebarMenuButton>
@@ -205,7 +205,7 @@ export function AppSidebar() {
                       href={item.href}
                       aria-current={pathname === item.href ? 'page' : undefined}
                     >
-                      {/* <item.icon aria-hidden="true" /> */}
+                      <item.icon aria-hidden="true" />
                       <span>{item.title}</span>
                     </Link>
                   </SidebarMenuButton>
@@ -238,7 +238,7 @@ export function AppSidebar() {
                       {user?.rol === 'admin' ? 'Administrador' : 'Usuario'}
                     </span>
                   </div>
-                  {/* <ChevronDown className="ml-auto size-4 group-data-[collapsible=icon]:hidden" aria-hidden="true" /> */}
+                  <ChevronDown className="ml-auto size-4 group-data-[collapsible=icon]:hidden" aria-hidden="true" />
                 </SidebarMenuButton>
               </DropdownMenuTrigger>
               <DropdownMenuContent
@@ -261,7 +261,7 @@ export function AppSidebar() {
                 <DropdownMenuSeparator />
                 <DropdownMenuItem asChild>
                   <Link href="/configuracion" className="flex items-center gap-2 cursor-pointer">
-                    {/* <Settings className="h-4 w-4" aria-hidden="true" /> */}
+                    <Settings className="h-4 w-4" aria-hidden="true" />
                     <span>Configuración</span>
                   </Link>
                 </DropdownMenuItem>
@@ -270,7 +270,7 @@ export function AppSidebar() {
                   onClick={handleLogout}
                   className="text-destructive focus:text-destructive cursor-pointer"
                 >
-                  {/* <LogOut className="h-4 w-4" aria-hidden="true" /> */}
+                  <LogOut className="h-4 w-4" aria-hidden="true" />
                   <span>Cerrar sesión</span>
                 </DropdownMenuItem>
               </DropdownMenuContent>
