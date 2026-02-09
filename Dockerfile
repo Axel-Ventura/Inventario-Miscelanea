@@ -1,5 +1,12 @@
-FROM alpine
+FROM node:20-alpine
 
-LABEL maintainer="DevOps Team"
+WORKDIR /app
 
-CMD ["echo", "Infraestructura de Backend lista. Esperando codigo del equipo."]
+COPY src/frontend/package.json src/frontend/package-lock.json ./
+RUN npm install
+
+COPY src/frontend .
+
+EXPOSE 3000
+
+CMD ["npm", "run", "dev"]
