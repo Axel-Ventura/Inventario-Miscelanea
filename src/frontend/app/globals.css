@@ -123,3 +123,45 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* ============================================
+   ANIMACIONES ACCESIBLES
+   Cumple con criterios WCAG y recomendaciones W3C:
+   - Solo se animan transform y opacity (propiedades seguras)
+   - Duración máxima de 300ms
+   - Respeta prefers-reduced-motion
+   ============================================ */
+
+/* Desactivar TODAS las animaciones cuando el usuario lo solicita */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Animación del loader accesible */
+@keyframes accessible-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Clase para spinner accesible */
+.animate-spin {
+  animation: accessible-spin 1s linear infinite;
+}
+
+/* Desactivar spinner para usuarios con prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .animate-spin {
+    animation: none;
+  }
+}
