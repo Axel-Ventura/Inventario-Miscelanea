@@ -1,0 +1,311 @@
+warning: in the working copy of 'src/frontend/.gitignore', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/frontend/app/(dashboard)/configuracion/page.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/frontend/app/(dashboard)/dashboard/page.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/frontend/app/(dashboard)/inventario/page.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/frontend/app/(dashboard)/layout.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/frontend/app/(dashboard)/productos/page.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/frontend/app/(dashboard)/proveedores/page.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/frontend/app/(dashboard)/usuarios/page.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/frontend/app/api/auth/login/route.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/frontend/app/globals.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/frontend/app/layout.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/frontend/app/login/page.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/frontend/app/page.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/frontend/components.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/frontend/components/app-sidebar.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/frontend/components/theme-provider.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/frontend/components/ui/accordion.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/frontend/components/ui/alert-dialog.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/frontend/components/ui/alert.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/frontend/components/ui/aspect-ratio.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/frontend/components/ui/avatar.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/frontend/components/ui/badge.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/frontend/components/ui/breadcrumb.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/frontend/components/ui/button-group.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/frontend/components/ui/button.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/frontend/components/ui/calendar.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/frontend/components/ui/card.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/frontend/components/ui/carousel.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/frontend/components/ui/chart.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/frontend/components/ui/checkbox.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/frontend/components/ui/collapsible.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/frontend/components/ui/command.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/frontend/components/ui/context-menu.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/frontend/components/ui/dialog.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/frontend/components/ui/drawer.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/frontend/components/ui/dropdown-menu.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/frontend/components/ui/empty.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/frontend/components/ui/field.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/frontend/components/ui/form.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/frontend/components/ui/hover-card.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/frontend/components/ui/input-group.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/frontend/components/ui/input-otp.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/frontend/components/ui/input.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/frontend/components/ui/item.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/frontend/components/ui/kbd.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/frontend/components/ui/label.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/frontend/components/ui/menubar.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/frontend/components/ui/navigation-menu.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/frontend/components/ui/pagination.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/frontend/components/ui/popover.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/frontend/components/ui/progress.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/frontend/components/ui/radio-group.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/frontend/components/ui/resizable.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/frontend/components/ui/scroll-area.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/frontend/components/ui/select.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/frontend/components/ui/separator.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/frontend/components/ui/sheet.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/frontend/components/ui/sidebar.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/frontend/components/ui/skeleton.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/frontend/components/ui/slider.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/frontend/components/ui/sonner.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/frontend/components/ui/spinner.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/frontend/components/ui/switch.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/frontend/components/ui/table.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/frontend/components/ui/tabs.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/frontend/components/ui/textarea.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/frontend/components/ui/toast.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/frontend/components/ui/toaster.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/frontend/components/ui/toggle-group.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/frontend/components/ui/toggle.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/frontend/components/ui/tooltip.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/frontend/components/ui/use-mobile.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/frontend/components/ui/use-toast.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/frontend/hooks/use-mobile.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/frontend/hooks/use-toast.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/frontend/lib/mock-data.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/frontend/lib/stores/auth-store.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/frontend/lib/types.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/frontend/lib/utils.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/frontend/next.config.mjs', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/frontend/package.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/frontend/pnpm-lock.yaml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/frontend/postcss.config.mjs', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/frontend/public/icon.svg', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/frontend/styles/globals.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/frontend/tsconfig.json', LF will be replaced by CRLF the next time Git touches it
+[1mdiff --git a/src/frontend/.gitignore b/src/frontend/.gitignore[m
+[1mindex f650315..c138a60 100644[m
+[1m--- a/src/frontend/.gitignore[m
+[1m+++ b/src/frontend/.gitignore[m
+[36m@@ -1,27 +1,17 @@[m
+[31m-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.[m
+[32m+[m[32m# v0 sandbox internal files[m
+[32m+[m[32m__v0_runtime_loader.js[m
+[32m+[m[32m__v0_devtools.tsx[m
+[32m+[m[32m__v0_jsx-dev-runtime.ts[m
+[32m+[m[32m.npmrc[m
+[32m+[m[32m.snowflake/[m
+[32m+[m[32m.v0-trash/[m
+[32m+[m[32m.vercel/[m
+[32m+[m[32mnext.user-config.*[m
+ [m
+[31m-# dependencies[m
+[31m-/node_modules[m
+[32m+[m[32m# Environment variables[m
+[32m+[m[32m.env*.local[m
+ [m
+[31m-# next.js[m
+[31m-/.next/[m
+[31m-/out/[m
+[31m-[m
+[31m-# production[m
+[31m-/build[m
+[31m-[m
+[31m-# debug[m
+[31m-npm-debug.log*[m
+[31m-yarn-debug.log*[m
+[31m-yarn-error.log*[m
+[31m-.pnpm-debug.log*[m
+[31m-[m
+[31m-# env files[m
+[31m-.env*[m
+[31m-[m
+[31m-# vercel[m
+[31m-.vercel[m
+[31m-[m
+[31m-# typescript[m
+[31m-*.tsbuildinfo[m
+[31m-next-env.d.ts[m
+\ No newline at end of file[m
+[32m+[m[32m# Common ignores[m
+[32m+[m[32mnode_modules/[m
+[32m+[m[32m.next/[m
+[32m+[m[32m.DS_Store[m
+\ No newline at end of file[m
+[1mdiff --git a/src/frontend/app/(dashboard)/configuracion/page.tsx b/src/frontend/app/(dashboard)/configuracion/page.tsx[m
+[1mindex 2fa1134..cbe8f02 100644[m
+[1m--- a/src/frontend/app/(dashboard)/configuracion/page.tsx[m
+[1m+++ b/src/frontend/app/(dashboard)/configuracion/page.tsx[m
+[36m@@ -1,358 +1,197 @@[m
+ 'use client'[m
+ [m
+[31m-import React from "react"[m
+[31m-[m
+[31m-import { useState, useEffect } from 'react'[m
+[31m-import { useRouter } from 'next/navigation'[m
+ import { useAuthStore } from '@/lib/stores/auth-store'[m
+[32m+[m[32mimport { ROLE_LABELS } from '@/lib/types'[m
+[32m+[m[32mimport {[m
+[32m+[m[32m  Card,[m
+[32m+[m[32m  CardContent,[m
+[32m+[m[32m  CardDescription,[m
+[32m+[m[32m  CardHeader,[m
+[32m+[m[32m  CardTitle,[m
+[32m+[m[32m} from '@/components/ui/card'[m
+ import { Button } from '@/components/ui/button'[m
+ import { Input } from '@/components/ui/input'[m
+ import { Label } from '@/components/ui/label'[m
+[31m-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'[m
+[31m-import { Alert, AlertDescription } from '@/components/ui/alert'[m
+ import { Separator } from '@/components/ui/separator'[m
+[31m-import { Badge } from '@/components/ui/badge'[m
+[31m-import {[m
+[31m-  AlertDialog,[m
+[31m-  AlertDialogAction,[m
+[31m-  AlertDialogCancel,[m
+[31m-  AlertDialogContent,[m
+[31m-  AlertDialogDescription,[m
+[31m-  AlertDialogFooter,[m
+[31m-  AlertDialogHeader,[m
+[31m-  AlertDialogTitle,[m
+[31m-  AlertDialogTrigger,[m
+[31m-} from '@/components/ui/alert-dialog'[m
+[31m-import { Settings, User, Lock, LogOut, Loader2, AlertCircle, CheckCircle2, Shield } from 'lucide-react'[m
+[32m+[m[32mimport { Switch } from '@/components/ui/switch'[m
+[32m+[m[32mimport { Avatar, AvatarFallback } from '@/components/ui/avatar'[m
+[32m+[m[32mimport { User, Bell, Shield, Palette } from 'lucide-react'[m
+ [m
+ export default function ConfiguracionPage() {[m
+[31m-  const router = useRouter()[m
+[31m-  const { user, logout } = useAuthStore()[m
+[31m-[m
+[31m-  // Estado para el perfil[m
+[31m-  const [profileData, setProfileData] = useState({[m
+[31m-    nombre: '',[m
+[31m-    email: '',[m
+[31m-  })[m
+[31m-  const [profileLoading, setProfileLoading] = useState(false)[m
+[31m-  const [profileSuccess, setProfileSuccess] = useState(false)[m
+[31m-  const [profileError, setProfileError] = useState('')[m
+[31m-[m
+[31m-  // Estado para cambio de contraseña[m
+[31m-  const [passwordData, setPasswordData] = useState({[m
+[31m-    currentPassword: '',[m
+[31m-    newPassword: '',[m
+[31m-    confirmPassword: '',[m
+[31m-  })[m
+[31m-  const [passwordLoading, setPasswordLoading] = useState(false)[m
+[31m-  const [passwordSuccess, setPasswordSuccess] = useState(false)[m
+[31m-  const [passwordError, setPasswordError] = useState('')[m
+[31m-[m
+[31m-  // Cargar datos del usuario[m
+[31m-  useEffect(() => {[m
+[31m-    if (user) {[m
+[31m-      setProfileData({[m
+[31m-        nombre: user.nombre,[m
+[31m-        email: user.email,[m
+[31m-      })[m
+[31m-    }[m
+[31m-  }, [user])[m
+[31m-[m
+[31m-  // Manejar actualización de perfil[m
+[31m-  const handleProfileSubmit = async (e: React.FormEvent) => {[m
+[31m-    e.preventDefault()[m
+[31m-    setProfileError('')[m
+[31m-    setProfileSuccess(false)[m
+[31m-[m
+[31m-    if (!profileData.nombre.trim()) {[m
+[31m-      setProfileError('El nombre es requerido')[m
+[31m-      return[m
+[31m-    }[m
+[31m-[m
+[31m-    if (!profileData.email.trim()) {[m
+[31m-      setProfileError('El correo electrónico es requerido')[m
+[31m-      return[m
+[31m-    }[m
+[31m-[m
+[31m-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/[m
+[31m-    if (!emailRegex.test(profileData.email)) {[m
+[31m-      setProfileError('El formato del correo electrónico no es válido')[m
+[31m-      return[m
+[31m-    }[m
+[32m+[m[32m  const { user } = useAuthStore()[m
+ [m
+[31m-    setProfileLoading(true)[m
+[31m-    [m
+[31m-    // Simulación de actualización (en producción se llamaría al API)[m
+[31m-    await new Promise((resolve) => setTimeout(resolve, 1000))[m
+[31m-    [m
+[31m-    setProfileLoading(false)[m
+[31m-    setProfileSuccess(true)[m
+[31m-    [m
+[31m-    // Limpiar mensaje de éxito después de 3 segundos[m
+[31m-    setTimeout(() => setProfileSuccess(false), 3000)[m
+[31m-  }[m
+[31m-[m
+[31m-  // Manejar cambio de contraseña[m
+[31m-  const handlePasswordSubmit = async (e: React.FormEvent) => {[m
+[31m-    e.preventDefault()[m
+[31m-    setPasswordError('')[m
+[31m-    setPasswordSuccess(false)[m
+[31m-[m
+[31m-    if (!passwordData.currentPassword) {[m
+[31m-      setPasswordError('La contraseña actual es requerida')[m
+[31m-      return[m
+[31m-    }[m
+[31m-[m
+[31m-    if (!passwordData.newPassword) {[m
+[31m-      setPasswordError('La nueva contraseña es requerida')[m
+[31m-      return[m
+[31m-    }[m
+[31m-[m
+[31m-    if (passwordData.newPassword.length < 6) {[m
+[31m-      setPasswordError('La nueva contraseña debe tener al menos 6 caracteres')[m
+[31m-      return[m
+[31m-    }[m
+[31m-[m
+[31m-    if (passwordData.newPassword !== passwordData.confirmPassword) {[m
+[31m-      setPasswordError('Las contraseñas no coinciden')[m
+[31m-      return[m
+[31m-    }[m
+[31m-[m
+[31m-    setPasswordLoading(true)[m
+[31m-    [m
+[31m-    // Simulación de cambio de contraseña (en producción se llamaría al API)[m
+[31m-    await new Promise((resolve) => setTimeout(resolve, 1000))[m
+[31m-    [m
+[31m-    setPasswordLoading(false)[m
+[31m-    setPasswordSuccess(true)[m
+[31m-    setPasswordData({[m
+[31m-      currentPassword: '',[m
+[31m-      newPassword: '',[m
+[31m-      confirmPassword: '',[m
+[31m-    })[m
+[31m-    [m
+[31m-    // Limpiar mensaje de éxito después de 3 segundos[m
+[31m-    setTimeout(() => setPasswordSuccess(false), 3000)[m
+[31m-  }[m
+[31m-[m
+[31m-  // Manejar cierre de sesión[m
+[31m-  const handleLogout = () => {[m
+[31m-    logout()[m
+[31m-    router.push('/login')[m
+[32m+[m[32m  const getInitials = (nombre: string, apellido: string) => {[m
+[32m+[m[32m    return `${nombre.charAt(0)}${apellido.charAt(0)}`.toUpperCase()[m
+   }[m
+ [m
+   return ([m
+     <div className="space-y-6">[m
+[31m-      {/* Header */}[m
+       <div>[m
+[31m-        <h1 className="text-2xl font-bold tracking-tight">Configuración</h1>[m
+[32m+[m[32m        <h1 className="text-2xl font-bold tracking-tight">Configuracion</h1>[m
+         <p className="text-muted-foreground">[m
+           Administra tu cuenta y preferencias del sistema[m
+         </p>[m
+       </div>[m
+ [m
+[31m-      <div className="grid gap-6">[m
+[31m-        {/* Información del perfil */}[m
+[
