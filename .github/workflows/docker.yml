@@ -1,4 +1,4 @@
-name: Build and Push Docker Image
+name: Build and Push Docker Images
 
 on:
   push:
@@ -17,14 +17,18 @@ jobs:
       - name: Login to Docker Hub
         run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
-      # 3. Build imagen
-      - name: Build Docker image
-        run: docker build -t inventory-frontend:latest ./src/frontend
+      # 3. Build FRONTEND
+      - name: Build frontend
+        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/inventory-frontend:latest ./src/frontend
 
-      # 4. Tag imagen
-      - name: Tag image
-        run: docker tag inventory-frontend:latest ${{ secrets.DOCKER_USERNAME }}/inventory-frontend:latest
-
-      # 5. Push a Docker Hub
-      - name: Push image
+      # 4. Push FRONTEND
+      - name: Push frontend
         run: docker push ${{ secrets.DOCKER_USERNAME }}/inventory-frontend:latest
+
+      # 5. Build BACKEND
+      - name: Build backend
+        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/inventory-backend:latest ./src/backend
+
+      # 6. Push BACKEND
+      - name: Push backend
+        run: docker push ${{ secrets.DOCKER_USERNAME }}/inventory-backend:latest
