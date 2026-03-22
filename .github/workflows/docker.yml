@@ -1,0 +1,30 @@
+name: Build and Push Docker Image
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Clonar repo
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # 2. Login a Docker Hub
+      - name: Login to Docker Hub
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+
+      # 3. Build imagen (IMPORTANTE: path correcto)
+      - name: Build Docker image
+        run: docker build -t inventory-backend:latest ./src/backend
+
+      # 4. Tag imagen
+      - name: Tag image
+        run: docker tag inventory-backend:latest ${{ secrets.DOCKER_USERNAME }}/inventory-backend:latest
+
+      # 5. Push a Docker Hub
+      - name: Push image
+        run: docker push ${{ secrets.DOCKER_USERNAME }}/inventory-backend:latest
