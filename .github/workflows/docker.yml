@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Clonar repo
+      # 1. Clonar repositorio
       - name: Checkout code
         uses: actions/checkout@v4
 
