@@ -19,7 +19,7 @@ export default function Error({
 }) {
   useEffect(() => {
     // Registrar el error en consola (en producción se enviaría a un servicio de monitoreo)
-    console.error('[v0] Error capturado:', error)
+    console.error('Error capturado:', error)
   }, [error])
 
   return (

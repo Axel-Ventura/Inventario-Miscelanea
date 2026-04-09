@@ -109,17 +109,12 @@ export function AppSidebar() {
       {/* Header del Sidebar */}
       <SidebarHeader className="border-b border-sidebar-border">
         <div className="flex items-center gap-2 px-2 py-1">
-          <div 
-            className="flex items-center justify-center w-8 h-8 rounded-lg bg-primary text-primary-foreground"
-            aria-hidden="true"
-          >
-            <Package className="w-4 h-4" />
-          </div>
           <span className="font-semibold text-lg group-data-[collapsible=icon]:hidden">
             Inventario
           </span>
         </div>
       </SidebarHeader>
+          
 
       {/* Contenido principal del sidebar con navegación */}
       <SidebarContent>

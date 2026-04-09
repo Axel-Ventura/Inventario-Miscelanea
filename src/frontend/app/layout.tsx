@@ -10,23 +10,23 @@ const _geistMono = Geist_Mono({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: 'Sistema de Gestión de Inventarios',
   description: 'Sistema completo para la gestión de inventarios, productos, proveedores y usuarios con accesibilidad WCAG 2.1 AA',
-  generator: 'v0.app',
+  generator: 'vite',
   icons: {
     icon: [
       {
-        url: '/icon-light-32x32.png',
+        url: '',
         media: '(prefers-color-scheme: light)',
       },
       {
-        url: '/icon-dark-32x32.png',
+        url: '',
         media: '(prefers-color-scheme: dark)',
       },
       {
-        url: '/icon.svg',
+        url: '',
         type: 'image/svg+xml',
       },
     ],
-    apple: '/apple-icon.png',
+    apple: '',
   },
 }
 
