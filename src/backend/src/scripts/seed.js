@@ -7,7 +7,7 @@ import pool from '../config/db.js';
 import { invalidateRolCache } from '../utils/roles.js';
 
 async function ensureRoles() {
-  for (const nombre of ['vendedor', 'almacenista']) {
+  for (const nombre of ['admin', 'usuario', 'vendedor', 'almacenista']) {
     const [r] = await pool.query('SELECT id FROM roles WHERE nombre = ?', [nombre]);
     if (!r[0]) await pool.query('INSERT INTO roles (nombre) VALUES (?)', [nombre]);
   }

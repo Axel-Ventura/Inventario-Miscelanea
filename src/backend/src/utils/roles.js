@@ -1,22 +1,33 @@
 import pool from '../config/db.js';
 
+const KNOWN_ROLES = ['admin', 'usuario', 'vendedor', 'almacenista'];
+const DEFAULT_ROLE = 'usuario';
+
 let cache = null;
+
+async function loadRoleCache() {
+  const [rows] = await pool.query('SELECT id, nombre FROM roles');
+  cache = Object.fromEntries(rows.map((r) => [r.nombre, r.id]));
+}
 
 export async function getRolId(nombre) {
   if (!cache) {
-    const [rows] = await pool.query('SELECT id, nombre FROM roles');
-    cache = Object.fromEntries(rows.map((r) => [r.nombre, r.id]));
+    await loadRoleCache();
   }
-  if (cache[nombre] != null) return cache[nombre];
 
-  const [rows] = await pool.query('SELECT id FROM roles WHERE nombre = ?', [nombre]);
+  const requestedRole = KNOWN_ROLES.includes(nombre) ? nombre : DEFAULT_ROLE;
+  if (cache[requestedRole] != null) return cache[requestedRole];
+
+  const [rows] = await pool.query('SELECT id FROM roles WHERE nombre = ?', [requestedRole]);
   if (rows[0]) {
-    cache[nombre] = rows[0].id;
+    cache[requestedRole] = rows[0].id;
     return rows[0].id;
   }
 
-  const [r2] = await pool.query("SELECT id FROM roles WHERE nombre = 'usuario' LIMIT 1");
-  return r2[0]?.id ?? 2;
+  const [result] = await pool.query('INSERT INTO roles (nombre) VALUES (?)', [requestedRole]);
+  const newId = result.insertId;
+  cache[requestedRole] = newId;
+  return newId;
 }
 
 export function invalidateRolCache() {

@@ -30,6 +30,31 @@ type AuthStore = AuthState & AuthActions
 
 const fetchOpts = { credentials: 'include' as const }
 
+type PersistedAuthState = {
+  user: User | null
+  token: string | null
+  isAuthenticated: boolean
+}
+
+const authStorage = {
+  getItem: (name: string) => {
+    try {
+      const raw = localStorage.getItem(name)
+      if (!raw) return null
+      return JSON.parse(raw) as { state: PersistedAuthState; version?: number }
+    } catch {
+      localStorage.removeItem(name)
+      return null
+    }
+  },
+  setItem: (name: string, value: { state: PersistedAuthState; version?: number }) => {
+    localStorage.setItem(name, JSON.stringify(value))
+  },
+  removeItem: (name: string) => {
+    localStorage.removeItem(name)
+  },
+}
+
 export const useAuthStore = create<AuthStore>()(
   persist(
     (set, get) => ({
@@ -180,6 +205,7 @@ export const useAuthStore = create<AuthStore>()(
     }),
     {
       name: 'auth-storage',
+      storage: authStorage,
       partialize: (state) => ({
         user: state.user,
         token: state.token,

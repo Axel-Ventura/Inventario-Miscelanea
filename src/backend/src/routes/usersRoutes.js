@@ -6,13 +6,15 @@ import {
   updateUser,
   deleteUser,
 } from '../controllers/usersController.js';
+import { requireAdmin } from '../middleware/requireAdmin.js';
+import { requireOwnerOrAdmin } from '../middleware/requireOwnerOrAdmin.js';
 
 const router = express.Router();
 
-router.get('/', listUsers);
-router.post('/', createUser);
-router.get('/:id', getUser);
-router.put('/:id', updateUser);
-router.delete('/:id', deleteUser);
+router.get('/', requireAdmin, listUsers);
+router.post('/', requireAdmin, createUser);
+router.get('/:id', requireOwnerOrAdmin, getUser);
+router.put('/:id', requireOwnerOrAdmin, updateUser);
+router.delete('/:id', requireAdmin, deleteUser);
 
 export default router;

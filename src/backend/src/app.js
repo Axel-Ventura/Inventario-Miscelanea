@@ -33,7 +33,7 @@ app.use(cookieParser());
 app.use(express.json());
 
 app.use('/api/auth', authRoutes);
-app.use('/api/users', requireAuth, requireAdmin, usersRoutes);
+app.use('/api/users', requireAuth, usersRoutes);
 app.use('/api/products', requireAuth, productsRoutes);
 app.use('/api/providers', requireAuth, providersRoutes);
 app.use('/api/inventory', requireAuth, inventoryRoutes);
