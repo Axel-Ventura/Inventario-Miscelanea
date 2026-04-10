@@ -3,19 +3,18 @@ import app from "../src/app.js";
 
 describe("POST /api/auth/login", () => {
 
-  test("credenciales correctas → 200 + token", async () => {
-
-    const res = await request(app)
-      .post("/api/auth/login")
-      .send({
+  (process.env.RUN_LOGIN_INTEGRATION ? test : test.skip)(
+    "credenciales correctas → 200 + token (requiere MySQL, usuario admin@test.com y tabla sessions)",
+    async () => {
+      const res = await request(app).post("/api/auth/login").send({
         email: "admin@test.com",
-        password: "123456"
+        password: "123456",
       });
 
-    expect(res.statusCode).toBe(200);
-    expect(res.body.token).toBeDefined();
-
-  });
+      expect(res.statusCode).toBe(200);
+      expect(res.body.token).toBeDefined();
+    }
+  );
 
   test("email incorrecto → 401", async () => {
 

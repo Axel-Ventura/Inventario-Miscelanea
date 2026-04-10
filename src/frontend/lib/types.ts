@@ -1,6 +1,6 @@
 // Tipos para el sistema de gestión de inventarios
 
-export type UserRole = 'admin' | 'usuario'
+export type UserRole = 'admin' | 'usuario' | 'vendedor' | 'almacenista'
 
 export interface User {
   id: string
