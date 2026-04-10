@@ -5,6 +5,7 @@
       "dom.iterable",
       "esnext"
     ],
+    "ignoreDeprecations": "6.0",
     "baseUrl": ".",
     "allowJs": true,
     "target": "ES6",
@@ -16,7 +17,7 @@
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "react-jsx",
+    "jsx": "preserve",
     "incremental": true,
     "plugins": [
       {

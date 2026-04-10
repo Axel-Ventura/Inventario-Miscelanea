@@ -65,8 +65,10 @@ export default function ProductosPage() {
     fetchProveedores()
   }, [fetchProductos, fetchProveedores])
 
-  // Obtener categorías únicas
-  const categorias = [...new Set(productos.map((p) => p.categoria))]
+  // Sin categoría en BD → ''; Radix no permite SelectItem con value=""
+  const categorias = [...new Set(productos.map((p) => p.categoria))].filter(
+    (c) => c != null && c !== ''
+  )
 
   // Filtrar productos
   const filteredProductos = productos.filter((producto) => {
@@ -74,7 +76,9 @@ export default function ProductosPage() {
       producto.nombre.toLowerCase().includes(searchTerm.toLowerCase()) ||
       producto.descripcion.toLowerCase().includes(searchTerm.toLowerCase())
     
-    const matchesCategory = categoryFilter === 'all' || producto.categoria === categoryFilter
+    const matchesCategory =
+      categoryFilter === 'all' ||
+      (categoryFilter === '__sin_categoria__' ? !producto.categoria : producto.categoria === categoryFilter)
     
     const matchesStock = 
       stockFilter === 'all' ||
@@ -155,6 +159,9 @@ export default function ProductosPage() {
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="all">Todas las categorías</SelectItem>
+                {productos.some((p) => !p.categoria) && (
+                  <SelectItem value="__sin_categoria__">Sin categoría</SelectItem>
+                )}
                 {categorias.map((cat) => (
                   <SelectItem key={cat} value={cat}>
                     {cat}

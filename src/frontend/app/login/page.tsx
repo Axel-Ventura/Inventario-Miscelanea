@@ -2,9 +2,9 @@
 
 import React from "react"
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Suspense } from 'react'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { useAuthStore } from '@/lib/stores/auth-store'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -13,12 +13,14 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Alert, AlertDescription } from '@/components/ui/alert'
 import { Loader2, Package, AlertCircle } from 'lucide-react'
 
-export default function LoginPage() {
+function LoginForm() {
   const router = useRouter()
+  const searchParams = useSearchParams()
   const { login, isLoading, error, clearError, isAuthenticated } = useAuthStore()
-  
+
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const reason = searchParams.get('reason')
 
   // Redirigir si ya está autenticado
   useEffect(() => {
@@ -67,6 +69,19 @@ export default function LoginPage() {
         <form onSubmit={handleSubmit}>
           <CardContent className="space-y-4">
             {/* Mensaje de error accesible */}
+            {reason === 'expired' && (
+              <Alert variant="destructive" role="alert" aria-live="polite">
+                <AlertCircle className="h-4 w-4" aria-hidden="true" />
+                <AlertDescription>Tu sesión expiró o fue cerrada. Ingresa de nuevo.</AlertDescription>
+              </Alert>
+            )}
+            {reason === 'sync' && (
+              <Alert role="status" aria-live="polite">
+                <AlertDescription>
+                  Cerraste sesión en otra pestaña. Puedes volver a entrar aquí.
+                </AlertDescription>
+              </Alert>
+            )}
             {error && (
               <Alert variant="destructive" role="alert" aria-live="polite">
                 <AlertCircle className="h-4 w-4" aria-hidden="true" />
@@ -145,12 +160,26 @@ export default function LoginPage() {
         {/* Credenciales de prueba para desarrollo */}
         <div className="px-6 pb-6">
           <div className="p-3 bg-muted rounded-lg text-sm">
-            <p className="font-medium mb-1">Credenciales de prueba:</p>
-            <p className="text-muted-foreground">Admin: admin@inventario.com / 123456</p>
-            <p className="text-muted-foreground">Usuario: usuario@inventario.com / 123456</p>
+            <p className="font-medium mb-1"></p>
+            <p className="text-muted-foreground"></p>
+            <p className="text-muted-foreground"><code className="text-xs"></code></p>
           </div>
         </div>
       </Card>
     </main>
+  )
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense
+      fallback={
+        <main className="min-h-screen flex items-center justify-center bg-muted/30 p-4">
+          <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" aria-hidden="true" />
+        </main>
+      }
+    >
+      <LoginForm />
+    </Suspense>
   )
 }

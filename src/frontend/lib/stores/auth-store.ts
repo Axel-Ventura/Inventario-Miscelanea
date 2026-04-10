@@ -2,7 +2,9 @@
 
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
-import type { User, UserRole } from '@/lib/types'
+import { apiUrl } from '@/lib/api-base'
+import { broadcastAuthLogout, broadcastAuthLogin } from '@/lib/auth-broadcast'
+import type { User } from '@/lib/types'
 
 interface AuthState {
   user: User | null
@@ -15,62 +17,111 @@ interface AuthState {
 interface AuthActions {
   login: (email: string, password: string) => Promise<boolean>
   register: (email: string, password: string, nombre: string) => Promise<boolean>
-  logout: () => void
+  logout: () => Promise<void>
+  /** Solo limpia cliente (otras pestañas / 401). */
+  logoutLocalOnly: () => void
+  logoutAllSessions: () => Promise<boolean>
   clearError: () => void
   setLoading: (loading: boolean) => void
+  checkAuth: () => void
 }
 
 type AuthStore = AuthState & AuthActions
 
+const fetchOpts = { credentials: 'include' as const }
+
+type PersistedAuthState = {
+  user: User | null
+  token: string | null
+  isAuthenticated: boolean
+}
+
+const authStorage = {
+  getItem: (name: string) => {
+    try {
+      const raw = localStorage.getItem(name)
+      if (!raw) return null
+      return JSON.parse(raw) as { state: PersistedAuthState; version?: number }
+    } catch {
+      localStorage.removeItem(name)
+      return null
+    }
+  },
+  setItem: (name: string, value: { state: PersistedAuthState; version?: number }) => {
+    localStorage.setItem(name, JSON.stringify(value))
+  },
+  removeItem: (name: string) => {
+    localStorage.removeItem(name)
+  },
+}
+
 export const useAuthStore = create<AuthStore>()(
   persist(
     (set, get) => ({
-      // Estado inicial
       user: null,
       token: null,
       isAuthenticated: false,
       isLoading: false,
       error: null,
 
-      // Iniciar sesión
-      login: async (email: string, password: string) => {
+      logoutLocalOnly: () => {
+        if (typeof window !== 'undefined') {
+          localStorage.removeItem('token')
+        }
+        set({
+          user: null,
+          token: null,
+          isAuthenticated: false,
+          error: null,
+        })
+      },
+
+      login: async (email, password) => {
         set({ isLoading: true, error: null })
+
         try {
-          const response = await fetch('http://backend:4000/api/auth/login', {
+          const res = await fetch(apiUrl('/api/auth/login'), {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email, password }),
+            ...fetchOpts,
           })
 
-          const data = await response.json()
+          const data = await res.json()
 
-          if (!response.ok) {
-            set({ error: data.message || 'Error al iniciar sesión', isLoading: false })
+          if (!res.ok) {
+            set({ error: data.message ?? 'Error al iniciar sesión', isLoading: false })
             return false
           }
 
+          localStorage.setItem('token', data.token)
+
           set({
-            user: data.user,
+            user: data.user ?? null,
             token: data.token,
             isAuthenticated: true,
             isLoading: false,
-            error: null,
           })
+
+          broadcastAuthLogin()
           return true
-        } catch (error) {
-          set({ error: 'Error de conexión', isLoading: false })
+        } catch {
+          set({
+            error: 'Error al conectar con el servidor',
+            isLoading: false,
+          })
           return false
         }
       },
 
-      // Registrar usuario
       register: async (email: string, password: string, nombre: string) => {
         set({ isLoading: true, error: null })
         try {
-          const response = await fetch('http://backend:4000/api/auth/register', {
+          const response = await fetch(apiUrl('/api/auth/register'), {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email, password, nombre }),
+            ...fetchOpts,
           })
 
           const data = await response.json()
@@ -80,6 +131,8 @@ export const useAuthStore = create<AuthStore>()(
             return false
           }
 
+          localStorage.setItem('token', data.token)
+
           set({
             user: data.user,
             token: data.token,
@@ -87,31 +140,72 @@ export const useAuthStore = create<AuthStore>()(
             isLoading: false,
             error: null,
           })
+          broadcastAuthLogin()
           return true
-        } catch (error) {
+        } catch {
           set({ error: 'Error de conexión', isLoading: false })
           return false
         }
       },
 
-      // Cerrar sesión
-      logout: () => {
-        set({
-          user: null,
-          token: null,
-          isAuthenticated: false,
-          error: null,
-        })
+      logout: async () => {
+        const token =
+          typeof window !== 'undefined' ? localStorage.getItem('token') : null
+
+        try {
+          await fetch(apiUrl('/api/auth/logout'), {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              ...(token ? { Authorization: `Bearer ${token}` } : {}),
+            },
+            ...fetchOpts,
+          })
+        } catch {
+          /* ignore */
+        }
+
+        broadcastAuthLogout()
+        get().logoutLocalOnly()
       },
 
-      // Limpiar error
+      logoutAllSessions: async () => {
+        const token =
+          typeof window !== 'undefined' ? localStorage.getItem('token') : null
+        if (!token) {
+          get().logoutLocalOnly()
+          return false
+        }
+        try {
+          const res = await fetch(apiUrl('/api/auth/logout-all'), {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${token}`,
+            },
+            ...fetchOpts,
+          })
+          if (res.ok) {
+            broadcastAuthLogout()
+            get().logoutLocalOnly()
+          }
+          return res.ok
+        } catch {
+          return false
+        }
+      },
+
       clearError: () => set({ error: null }),
 
-      // Establecer estado de carga
       setLoading: (loading: boolean) => set({ isLoading: loading }),
+
+      checkAuth: () => {
+        if (typeof window === 'undefined') return
+      },
     }),
     {
       name: 'auth-storage',
+      storage: authStorage,
       partialize: (state) => ({
         user: state.user,
         token: state.token,
@@ -121,5 +215,4 @@ export const useAuthStore = create<AuthStore>()(
   )
 )
 
-// Selector para verificar si el usuario es admin
 export const useIsAdmin = () => useAuthStore((state) => state.user?.rol === 'admin')

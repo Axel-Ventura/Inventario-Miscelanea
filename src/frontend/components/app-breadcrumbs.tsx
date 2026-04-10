@@ -24,6 +24,7 @@ const routeNameMap: Record<string, string> = {
   proveedores: 'Proveedores',
   usuarios: 'Usuarios',
   configuracion: 'Configuración',
+  sessions: 'Mis sesiones',
 }
 
 /**
