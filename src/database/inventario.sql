@@ -1,6 +1,17 @@
 -- Crear base de datos
 CREATE DATABASE IF NOT EXISTS inventario_db;
 USE inventario_db;
+--SESIONES--
+CREATE TABLE sesiones (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    usuario_id INT,
+    token VARCHAR(255),
+    user_agent TEXT,
+    ip VARCHAR(45),
+    ultima_actividad DATETIME,
+    expira_en DATETIME,
+    creado_en DATETIME DEFAULT CURRENT_TIMESTAMP
+);
 
 -- =====================
 -- ROLES

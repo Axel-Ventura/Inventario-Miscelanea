@@ -168,7 +168,7 @@ export default function NuevoProductoPage() {
               <div className="space-y-2">
                 <Label htmlFor="categoria">Categoría *</Label>
                 <Select
-                  value={formData.categoria}
+                  value={formData.categoria || undefined}
                   onValueChange={(value) => handleChange('categoria', value)}
                 >
                   <SelectTrigger id="categoria" aria-required="true">
@@ -216,7 +216,7 @@ export default function NuevoProductoPage() {
               <div className="space-y-2">
                 <Label htmlFor="proveedor">Proveedor *</Label>
                 <Select
-                  value={formData.proveedorId}
+                  value={formData.proveedorId || undefined}
                   onValueChange={(value) => handleChange('proveedorId', value)}
                 >
                   <SelectTrigger id="proveedor" aria-required="true">

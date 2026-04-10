@@ -2,6 +2,7 @@
 
 import { create } from 'zustand'
 import type { User, UserRole } from '@/lib/types'
+import { apiFetch } from '@/lib/api-client'
 
 interface UsersState {
   usuarios: User[]
@@ -27,12 +28,15 @@ export const useUsersStore = create<UsersStore>((set, get) => ({
   fetchUsuarios: async () => {
     set({ isLoading: true, error: null })
     try {
-      const response = await fetch('/api/users')
+      const response = await apiFetch('/api/users')
       const data = await response.json()
       if (response.ok) {
         set({ usuarios: data, isLoading: false })
       } else {
-        set({ error: data.message, isLoading: false })
+        set({
+          error: typeof data?.message === 'string' ? data.message : data?.error ?? 'Error al cargar usuarios',
+          isLoading: false,
+        })
       }
     } catch (error) {
       set({ error: 'Error al cargar usuarios', isLoading: false })
@@ -42,9 +46,8 @@ export const useUsersStore = create<UsersStore>((set, get) => ({
   addUsuario: async (usuario) => {
     set({ isLoading: true, error: null })
     try {
-      const response = await fetch('/api/users', {
+      const response = await apiFetch('/api/users', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(usuario),
       })
       const data = await response.json()
@@ -52,7 +55,10 @@ export const useUsersStore = create<UsersStore>((set, get) => ({
         set((state) => ({ usuarios: [...state.usuarios, data], isLoading: false }))
         return true
       } else {
-        set({ error: data.message, isLoading: false })
+        set({
+          error: typeof data?.message === 'string' ? data.message : data?.error ?? 'Error al crear usuario',
+          isLoading: false,
+        })
         return false
       }
     } catch (error) {
@@ -64,9 +70,8 @@ export const useUsersStore = create<UsersStore>((set, get) => ({
   updateUsuario: async (id, usuario) => {
     set({ isLoading: true, error: null })
     try {
-      const response = await fetch(`/api/users/${id}`, {
+      const response = await apiFetch(`/api/users/${id}`, {
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(usuario),
       })
       const data = await response.json()
@@ -77,7 +82,10 @@ export const useUsersStore = create<UsersStore>((set, get) => ({
         }))
         return true
       } else {
-        set({ error: data.message, isLoading: false })
+        set({
+          error: typeof data?.message === 'string' ? data.message : data?.error ?? 'Error al actualizar',
+          isLoading: false,
+        })
         return false
       }
     } catch (error) {
@@ -89,7 +97,8 @@ export const useUsersStore = create<UsersStore>((set, get) => ({
   deleteUsuario: async (id) => {
     set({ isLoading: true, error: null })
     try {
-      const response = await fetch(`/api/users/${id}`, { method: 'DELETE' })
+      const response = await apiFetch(`/api/users/${id}`, { method: 'DELETE' })
+      const data = response.ok ? null : await response.json()
       if (response.ok) {
         set((state) => ({
           usuarios: state.usuarios.filter((u) => u.id !== id),
@@ -97,8 +106,11 @@ export const useUsersStore = create<UsersStore>((set, get) => ({
         }))
         return true
       } else {
-        const data = await response.json()
-        set({ error: data.message, isLoading: false })
+        set({
+          error:
+            typeof data?.message === 'string' ? data.message : data?.error ?? 'Error al eliminar',
+          isLoading: false,
+        })
         return false
       }
     } catch (error) {

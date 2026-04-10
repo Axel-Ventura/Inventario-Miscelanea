@@ -11,6 +11,7 @@ import {
   Settings,
   LogOut,
   ChevronDown,
+  Shield,
 } from 'lucide-react'
 
 import { useAuthStore, useIsAdmin } from '@/lib/stores/auth-store'
@@ -77,6 +78,12 @@ const adminItems = [
 
 const settingsItems = [
   {
+    title: 'Mis sesiones',
+    href: '/sessions',
+    icon: Shield,
+    description: 'Dispositivos conectados y seguridad',
+  },
+  {
     title: 'Configuración',
     href: '/configuracion',
     icon: Settings,
@@ -99,8 +106,8 @@ export function AppSidebar() {
       .slice(0, 2)
   }
 
-  const handleLogout = () => {
-    logout()
+  const handleLogout = async () => {
+    await logout()
     window.location.href = '/login'
   }
 

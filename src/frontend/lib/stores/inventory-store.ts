@@ -2,6 +2,17 @@
 
 import { create } from 'zustand'
 import type { Product, InventoryMovement, Provider, Sale } from '@/lib/types'
+import { apiFetch } from '@/lib/api-client'
+
+function errMsg(data: unknown, fallback: string): string {
+  if (data && typeof data === 'object' && 'message' in data && typeof (data as { message: string }).message === 'string') {
+    return (data as { message: string }).message
+  }
+  if (data && typeof data === 'object' && 'error' in data && typeof (data as { error: string }).error === 'string') {
+    return (data as { error: string }).error
+  }
+  return fallback
+}
 
 interface InventoryState {
   productos: Product[]
@@ -31,6 +42,9 @@ interface InventoryActions {
 
   // Ventas
   fetchVentas: () => Promise<void>
+  addVenta: (
+    lineas: { productoId: string; cantidad: number; precioUnitario: number }[]
+  ) => Promise<boolean>
 
   // Utilidades
   clearError: () => void
@@ -51,12 +65,12 @@ export const useInventoryStore = create<InventoryStore>((set, get) => ({
   fetchProductos: async () => {
     set({ isLoading: true, error: null })
     try {
-      const response = await fetch('/api/products')
+      const response = await apiFetch('/api/products')
       const data = await response.json()
       if (response.ok) {
         set({ productos: data, isLoading: false })
       } else {
-        set({ error: data.message, isLoading: false })
+        set({ error: errMsg(data, 'Error al cargar productos'), isLoading: false })
       }
     } catch (error) {
       set({ error: 'Error al cargar productos', isLoading: false })
@@ -66,9 +80,8 @@ export const useInventoryStore = create<InventoryStore>((set, get) => ({
   addProducto: async (producto) => {
     set({ isLoading: true, error: null })
     try {
-      const response = await fetch('/api/products', {
+      const response = await apiFetch('/api/products', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(producto),
       })
       const data = await response.json()
@@ -76,7 +89,7 @@ export const useInventoryStore = create<InventoryStore>((set, get) => ({
         set((state) => ({ productos: [...state.productos, data], isLoading: false }))
         return true
       } else {
-        set({ error: data.message, isLoading: false })
+        set({ error: errMsg(data, 'Error al crear producto'), isLoading: false })
         return false
       }
     } catch (error) {
@@ -88,9 +101,8 @@ export const useInventoryStore = create<InventoryStore>((set, get) => ({
   updateProducto: async (id, producto) => {
     set({ isLoading: true, error: null })
     try {
-      const response = await fetch(`/api/products/${id}`, {
+      const response = await apiFetch(`/api/products/${id}`, {
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(producto),
       })
       const data = await response.json()
@@ -101,7 +113,7 @@ export const useInventoryStore = create<InventoryStore>((set, get) => ({
         }))
         return true
       } else {
-        set({ error: data.message, isLoading: false })
+        set({ error: errMsg(data, 'Error al actualizar producto'), isLoading: false })
         return false
       }
     } catch (error) {
@@ -113,7 +125,7 @@ export const useInventoryStore = create<InventoryStore>((set, get) => ({
   deleteProducto: async (id) => {
     set({ isLoading: true, error: null })
     try {
-      const response = await fetch(`/api/products/${id}`, { method: 'DELETE' })
+      const response = await apiFetch(`/api/products/${id}`, { method: 'DELETE' })
       if (response.ok) {
         set((state) => ({
           productos: state.productos.filter((p) => p.id !== id),
@@ -122,7 +134,7 @@ export const useInventoryStore = create<InventoryStore>((set, get) => ({
         return true
       } else {
         const data = await response.json()
-        set({ error: data.message, isLoading: false })
+        set({ error: errMsg(data, 'Error al eliminar producto'), isLoading: false })
         return false
       }
     } catch (error) {
@@ -135,12 +147,12 @@ export const useInventoryStore = create<InventoryStore>((set, get) => ({
   fetchMovimientos: async () => {
     set({ isLoading: true, error: null })
     try {
-      const response = await fetch('/api/inventory')
+      const response = await apiFetch('/api/inventory')
       const data = await response.json()
       if (response.ok) {
         set({ movimientos: data, isLoading: false })
       } else {
-        set({ error: data.message, isLoading: false })
+        set({ error: errMsg(data, 'Error al cargar movimientos'), isLoading: false })
       }
     } catch (error) {
       set({ error: 'Error al cargar movimientos', isLoading: false })
@@ -150,9 +162,8 @@ export const useInventoryStore = create<InventoryStore>((set, get) => ({
   addMovimiento: async (movimiento) => {
     set({ isLoading: true, error: null })
     try {
-      const response = await fetch('/api/inventory', {
+      const response = await apiFetch('/api/inventory', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(movimiento),
       })
       const data = await response.json()
@@ -166,7 +177,7 @@ export const useInventoryStore = create<InventoryStore>((set, get) => ({
         }))
         return true
       } else {
-        set({ error: data.message, isLoading: false })
+        set({ error: errMsg(data, 'Error al registrar movimiento'), isLoading: false })
         return false
       }
     } catch (error) {
@@ -179,12 +190,12 @@ export const useInventoryStore = create<InventoryStore>((set, get) => ({
   fetchProveedores: async () => {
     set({ isLoading: true, error: null })
     try {
-      const response = await fetch('/api/providers')
+      const response = await apiFetch('/api/providers')
       const data = await response.json()
       if (response.ok) {
         set({ proveedores: data, isLoading: false })
       } else {
-        set({ error: data.message, isLoading: false })
+        set({ error: errMsg(data, 'Error al cargar proveedores'), isLoading: false })
       }
     } catch (error) {
       set({ error: 'Error al cargar proveedores', isLoading: false })
@@ -194,9 +205,8 @@ export const useInventoryStore = create<InventoryStore>((set, get) => ({
   addProveedor: async (proveedor) => {
     set({ isLoading: true, error: null })
     try {
-      const response = await fetch('/api/providers', {
+      const response = await apiFetch('/api/providers', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(proveedor),
       })
       const data = await response.json()
@@ -204,7 +214,7 @@ export const useInventoryStore = create<InventoryStore>((set, get) => ({
         set((state) => ({ proveedores: [...state.proveedores, data], isLoading: false }))
         return true
       } else {
-        set({ error: data.message, isLoading: false })
+        set({ error: errMsg(data, 'Error al crear proveedor'), isLoading: false })
         return false
       }
     } catch (error) {
@@ -216,9 +226,8 @@ export const useInventoryStore = create<InventoryStore>((set, get) => ({
   updateProveedor: async (id, proveedor) => {
     set({ isLoading: true, error: null })
     try {
-      const response = await fetch(`/api/providers/${id}`, {
+      const response = await apiFetch(`/api/providers/${id}`, {
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(proveedor),
       })
       const data = await response.json()
@@ -229,7 +238,7 @@ export const useInventoryStore = create<InventoryStore>((set, get) => ({
         }))
         return true
       } else {
-        set({ error: data.message, isLoading: false })
+        set({ error: errMsg(data, 'Error al actualizar proveedor'), isLoading: false })
         return false
       }
     } catch (error) {
@@ -241,7 +250,7 @@ export const useInventoryStore = create<InventoryStore>((set, get) => ({
   deleteProveedor: async (id) => {
     set({ isLoading: true, error: null })
     try {
-      const response = await fetch(`/api/providers/${id}`, { method: 'DELETE' })
+      const response = await apiFetch(`/api/providers/${id}`, { method: 'DELETE' })
       if (response.ok) {
         set((state) => ({
           proveedores: state.proveedores.filter((p) => p.id !== id),
@@ -250,7 +259,7 @@ export const useInventoryStore = create<InventoryStore>((set, get) => ({
         return true
       } else {
         const data = await response.json()
-        set({ error: data.message, isLoading: false })
+        set({ error: errMsg(data, 'Error al eliminar proveedor'), isLoading: false })
         return false
       }
     } catch (error) {
@@ -263,15 +272,43 @@ export const useInventoryStore = create<InventoryStore>((set, get) => ({
   fetchVentas: async () => {
     set({ isLoading: true, error: null })
     try {
-      const response = await fetch('/api/sales')
+      const response = await apiFetch('/api/sales')
       const data = await response.json()
       if (response.ok) {
         set({ ventas: data, isLoading: false })
       } else {
-        set({ error: data.message, isLoading: false })
+        set({ error: errMsg(data, 'Error al cargar ventas'), isLoading: false })
       }
     } catch (error) {
       set({ error: 'Error al cargar ventas', isLoading: false })
+    }
+  },
+
+  addVenta: async (lineas) => {
+    set({ isLoading: true, error: null })
+    try {
+      const response = await apiFetch('/api/sales', {
+        method: 'POST',
+        body: JSON.stringify({ productos: lineas }),
+      })
+      const data = await response.json()
+      if (response.ok) {
+        set((state) => ({
+          ventas: [data as Sale, ...state.ventas],
+          productos: state.productos.map((p) => {
+            const line = lineas.find((l) => l.productoId === p.id)
+            if (!line) return p
+            return { ...p, stock: Math.max(0, p.stock - line.cantidad) }
+          }),
+          isLoading: false,
+        }))
+        return true
+      }
+      set({ error: errMsg(data, 'Error al registrar la venta'), isLoading: false })
+      return false
+    } catch (error) {
+      set({ error: 'Error al registrar la venta', isLoading: false })
+      return false
     }
   },
 
