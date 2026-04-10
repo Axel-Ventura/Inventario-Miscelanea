@@ -160,9 +160,9 @@ function LoginForm() {
         {/* Credenciales de prueba para desarrollo */}
         <div className="px-6 pb-6">
           <div className="p-3 bg-muted rounded-lg text-sm">
-            <p className="font-medium mb-1">Credenciales de prueba:</p>
-            <p className="text-muted-foreground">Admin (BD): admin@test.com / 123456</p>
-            <p className="text-muted-foreground">Tras <code className="text-xs">npm run seed</code> en el backend.</p>
+            <p className="font-medium mb-1"></p>
+            <p className="text-muted-foreground"></p>
+            <p className="text-muted-foreground"><code className="text-xs"></code></p>
           </div>
         </div>
       </Card>
