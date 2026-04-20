@@ -12,3 +12,8 @@ Aplicación web.
 ## Estado del proyecto
 Fase de análisis y definición de arquitectura.
 
+## Accesibilidad
+
+La documentación completa de accesibilidad y estados del sistema se encuentra en:
+
+docs/ACCESSIBILITY.md
